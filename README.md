@@ -3,7 +3,7 @@ Call center exercise
 
 This exercise is meant to provide a comparison between OOP and procedural programming and is part of the [OOP article]().
 
-In this repo we solve the "Call Center" exercise from [Cracking the Coding Interview]() book reported in the Ch.7 "Object-Oriented Design".
+In this repo we solve the "Call Center" exercise from [Cracking the Coding Interview](https://www.crackingthecodinginterview.com/) book reported in the Ch.7 "Object-Oriented Design".
 
 We provide the solution using Java (OOP) and Node.js (procedural).
 

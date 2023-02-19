@@ -3,6 +3,7 @@
  */
 package com.call.center;
 
+import com.call.center.employees.Manager;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -12,5 +13,18 @@ class AppTest {
   void appHasAGreeting() {
     App classUnderTest = new App();
     assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+  }
+
+  @Test
+  void mockEmployee() {
+    Employee employee = new MockEmployee();
+    new Manager(employee);
+  }
+}
+
+class MockEmployee extends Employee {
+  @Override
+  public String getName() {
+    return "Nick";
   }
 }
