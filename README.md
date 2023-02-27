@@ -11,6 +11,10 @@ We provide the solution using Java (OOP) and Node.js (procedural).
 
 > Imagine you have a call center with three levels of employees: respondent, manager, and director. An incoming telephone call must be first allocated to a respondent who is free. If the respondent can't handle the call, he or she must escalate the call to a manager. If the manager is not free or not able to handle it, then the call should be escalated to a director. Design the classes and data structures for this problem. Implement a method `dispatchCall()` which assigns a call to the first available employee.
 
+Actually this exercise definition is not consistent. If the call is allocated to a respondent who is free there are no reasons that the respondent can't handle the call. With this logic the calls never escalates. I have reformulated the exercise as:
+
+> Imagine you have a call center with three levels of employees: respondent, manager, and director. An incoming telephone call **must be allocated to the respondent who managed less calls**. If the respondent can't handle the call, he or she must escalate the call to a manager. If the manager is not free or not able to handle it, then the call should be escalated to a director. Design the classes and data structures for this problem. Implement a method `dispatchCall()` which assigns a call to the first available employee.
+
 ## Preliminary assumptions
 
 ### Tick

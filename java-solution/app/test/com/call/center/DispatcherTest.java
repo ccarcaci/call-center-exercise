@@ -1,50 +1,65 @@
 package com.call.center;
 
 import com.call.center.employees.CallCenterEmployeeInterface;
-import com.call.center.employees.Director;
-import com.call.center.employees.Manager;
-import com.call.center.employees.Respondent;
+import com.call.center.employees.Employee;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 public class DispatcherTest {
   @Test
-  void receiveCall() {
-    CallCenterBuilderInterface callCenterBuilderMock = new CallCenterBuilderMock();
-    List<CallCenterEmployeeInterface> respondents = callCenterBuilderMock.buildRespondents();
+  void dispatchCallToRespondent() {
+    List<CallCenterEmployeeInterface> respondents = CallCenterBuilderMock.buildRespondents();
 
     Dispatcher dispatcher = new Dispatcher(respondents);
+    dispatcher.dispatchCall();
+
+    Assertions.assertEquals(1, ((EmployeeMock)respondents.get(0)).pickCallCalls);
+  }
+
+  @Test
+  void secondRespondentManagedLessCalls() {
+    List<CallCenterEmployeeInterface> respondents = CallCenterBuilderMock.buildRespondents();
+    ((EmployeeMock)respondents.get(0)).managedCalls = 1;
+    ((EmployeeMock)respondents.get(1)).managedCalls = 0;
+
+    Assertions.assertEquals("Rick", respondents.get(0).getName());
+
+    Dispatcher dispatcher = new Dispatcher(respondents);
+    dispatcher.dispatchCall();
+
+    Assertions.assertEquals("Maria", respondents.get(0).getName());
+    Assertions.assertEquals(1, ((EmployeeMock)respondents.get(0)).pickCallCalls);
+    Assertions.assertEquals("Rick", respondents.get(1).getName());
+    Assertions.assertEquals(0, ((EmployeeMock)respondents.get(1)).pickCallCalls);
   }
 }
 
-class CallCenterBuilderMock implements CallCenterBuilderInterface {
-  @Override
-  public List<CallCenterEmployeeInterface> buildRespondents() {
-    CallCenterEmployeeInterface director = new DirectorMock("Anna");
-    CallCenterEmployeeInterface manager = new ManagerMock("Tim", (Director) director); // Forced casting, be careful with implemented methods
-    CallCenterEmployeeInterface respondent = new RespondentMock("Rick", (Manager) manager);
-    CallCenterEmployeeInterface respondent2 = new RespondentMock("Rick", (Manager) manager);
+class CallCenterBuilderMock {
+  public static List<CallCenterEmployeeInterface> buildRespondents() {
+    CallCenterEmployeeInterface respondent = new EmployeeMock("Rick");
+    CallCenterEmployeeInterface respondent2 = new EmployeeMock("Maria");
     return Arrays.asList(respondent, respondent2);
   }
 }
 
-class DirectorMock extends Director {
-  public DirectorMock(String name) {
+class EmployeeMock extends Employee {
+  public int pickCallCalls = 0;
+  public int managedCalls = 0;
+
+  public EmployeeMock(String name) {
     super(name);
   }
-}
 
-class ManagerMock extends Manager {
-  public ManagerMock(String name, Director director) {
-    super(name, director);
+  @Override
+  public void pickCall() {
+    pickCallCalls++;
   }
-}
 
-class RespondentMock extends Respondent {
-  public RespondentMock(String name, Manager manager) {
-    super(name, manager);
+  @Override
+  public int getManagedCalls() {
+    return managedCalls;
   }
 }
