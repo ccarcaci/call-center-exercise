@@ -7,4 +7,6 @@ public interface CallCenterEmployeeInterface {
   String getName();
 
   int getManagedCalls();
+
+  void tick();
 }

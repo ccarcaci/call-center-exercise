@@ -50,7 +50,7 @@ class EmployeeMock extends Employee {
   public int managedCalls = 0;
 
   public EmployeeMock(String name) {
-    super(name);
+    super(name, null);
   }
 
   @Override
