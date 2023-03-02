@@ -37,3 +37,5 @@ Moreover, we apply some rules to free the busy respondants.
 - If a respondent is busy for 10s to 20s will have 90% chance to be set free
 - If a respondent is busy for 6s to 10s will have 50% chance to be set free
 - If a respondent is busy for less than 6s will have 10% chance to be set free
+
+I decided to avoid to use parametric tests in both solutions to evaluate the conciseness and ease of defining parametric mocks in OOP and procedural languages.

@@ -12,19 +12,10 @@ public class CallTick {
   }
 
   public boolean maybeSetFree() {
-    if(busyTime < 6 && randomer.random() <= 10) {
-      return true;
-    }
-    if(6 <= busyTime && busyTime < 10 && randomer.random() <= 50) {
-      return true;
-    }
-    if(10 <= busyTime && busyTime < 20 && randomer.random() <= 90) {
-      return true;
-    }
-    if(20 <= busyTime) {
-      return true;
-    }
-
+    if(busyTime < 6 && randomer.random() <= 10) { return true; }
+    if(6 <= busyTime && busyTime < 10 && randomer.random() <= 50) { return true; }
+    if(10 <= busyTime && busyTime < 20 && randomer.random() <= 90) { return true; }
+    if(20 <= busyTime) { return true; }
     return false;
   }
 }

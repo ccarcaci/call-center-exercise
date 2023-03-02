@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CallTickTest {
-
   @Test
   void busyTimeIs5And10PercentProbabilitySetFreeIsTrue() {
     Randomer randomer = new RandomerMock();
@@ -35,19 +34,72 @@ public class CallTickTest {
   }
 
   @Test
-  void busyTimeIs6And50PercentProbabilitySetFreeIsTrue() {}
+  void busyTimeIs6And50PercentProbabilitySetFreeIsTrue() {
+    Randomer randomer = new RandomerMock();
+    ((RandomerMock)randomer).nextProbability = 50;
+    CallTick callTick = new CallTick(randomer);
+
+    for(int i = 0; i < 6; i++) {
+      callTick.incrementBusyTime();
+    }
+
+    boolean isFree = callTick.maybeSetFree();
+    Assertions.assertEquals(true, isFree);
+  }
 
   @Test
-  void busyTimeIs6And51PercentProbabilitySetFreeIsFalse() {}
+  void busyTimeIs6And51PercentProbabilitySetFreeIsFalse() {
+    Randomer randomer = new RandomerMock();
+    ((RandomerMock)randomer).nextProbability = 51;
+    CallTick callTick = new CallTick(randomer);
+
+    for(int i = 0; i < 6; i++) {
+      callTick.incrementBusyTime();
+    }
+
+    boolean isFree = callTick.maybeSetFree();
+    Assertions.assertEquals(false, isFree);
+  }
 
   @Test
-  void busyTimeIs10And90PercentProbabilitySetFreeIsTrue() {}
+  void busyTimeIs10And90PercentProbabilitySetFreeIsTrue() {
+    Randomer randomer = new RandomerMock();
+    ((RandomerMock)randomer).nextProbability = 90;
+    CallTick callTick = new CallTick(randomer);
+
+    for(int i = 0; i < 10; i++) {
+      callTick.incrementBusyTime();
+    }
+
+    boolean isFree = callTick.maybeSetFree();
+    Assertions.assertEquals(true, isFree);
+  }
 
   @Test
-  void busyTimeIs10And91PercentProbabilitySetFreeIsFalse() {}
+  void busyTimeIs10And91PercentProbabilitySetFreeIsFalse() {
+    Randomer randomer = new RandomerMock();
+    ((RandomerMock)randomer).nextProbability = 91;
+    CallTick callTick = new CallTick(randomer);
+
+    for(int i = 0; i < 10; i++) {
+      callTick.incrementBusyTime();
+    }
+
+    boolean isFree = callTick.maybeSetFree();
+    Assertions.assertEquals(false, isFree);
+  }
 
   @Test
-  void busyTimeIs20SetFreeIsTrueAndNoCallsToProabilityCheck() {}
+  void busyTimeIs20SetFreeIsTrueAndNoCallsToProabilityCheck() {
+    CallTick callTick = new CallTick(null);
+
+    for(int i = 0; i < 20; i++) {
+      callTick.incrementBusyTime();
+    }
+
+    boolean isFree = callTick.maybeSetFree();
+    Assertions.assertEquals(true, isFree);
+  }
 }
 
 class RandomerMock extends Randomer {

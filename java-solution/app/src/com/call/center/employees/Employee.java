@@ -48,6 +48,6 @@ public class Employee implements CallCenterEmployeeInterface {
     if(!busy) { return; }
 
     callTick.incrementBusyTime();
-    callTick.maybeSetFree();
+    busy = !callTick.maybeSetFree();
   }
 }
