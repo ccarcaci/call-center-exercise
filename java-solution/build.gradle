@@ -11,11 +11,11 @@ plugins {
     id 'application'
 }
 
-task wrapper(type: Wrapper){
-    gradleVersion = '7.6'
-}
+// task wrapper(type: Wrapper){
+//     gradleVersion = '7.6'
+// }
 
-task prepareKotlinBuildScriptModel {}
+// task prepareKotlinBuildScriptModel {}
 
 repositories {
     // Use Maven Central for resolving dependencies.
