@@ -19,6 +19,7 @@ public class CallTickTest {
     boolean isFree = callTick.maybeSetFree();
     Assertions.assertEquals(true, isFree);
   }
+  
   @Test
   void busyTimeIs5And11PercentProbabilitySetFreeIsFalse() {
     Randomer randomer = new RandomerMock();

@@ -16,6 +16,7 @@ public class Employee implements CallCenterEmployeeInterface {
     this.callTick = callTick;
     this.supervisor = null;
   }
+
   public Employee(String name, CallTick callTick, CallCenterEmployeeInterface supervisor) {
     this.name = name;
     this.callTick = callTick;
@@ -24,6 +25,11 @@ public class Employee implements CallCenterEmployeeInterface {
 
   @Override
   public void pickCall() {
+    if(busy && this.supervisor == null) {
+      System.out.println(name + " has no supervisor and is busy, call rejected");
+      return;
+    }
+
     if(busy) {
       supervisor.pickCall();
       System.out.println(name + " is busy, routed to manager");

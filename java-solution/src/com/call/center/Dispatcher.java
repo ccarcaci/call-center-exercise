@@ -19,4 +19,8 @@ public class Dispatcher {
     respondents.sort(Comparator.comparingInt(CallCenterEmployeeInterface::getManagedCalls));
     respondents.get(0).pickCall();
   }
+
+  public void tick() {
+    respondents.forEach(CallCenterEmployeeInterface::tick);
+  }
 }

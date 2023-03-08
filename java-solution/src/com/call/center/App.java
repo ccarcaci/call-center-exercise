@@ -3,12 +3,60 @@
  */
 package com.call.center;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import com.call.center.employees.CallCenterEmployeeInterface;
+import com.call.center.employees.Employee;
+import com.call.center.employees.calltick.CallTick;
+import com.call.center.employees.calltick.Randomer;
+
 public class App {
   public static void main(String[] args) {
-    System.out.println(new App().getGreeting());
-  }
+    Randomer randomer = new Randomer();
 
-  public String getGreeting() {
-    return "Hello World!";
+    CallCenterEmployeeInterface director = new Employee("Sarah", new CallTick(randomer));
+    List<CallCenterEmployeeInterface> managers = Arrays.asList(
+      new Employee("Rob", new CallTick(randomer), director),
+      new Employee("Elisa", new CallTick(randomer), director),
+      new Employee("Sam", new CallTick(randomer), director));
+    List<CallCenterEmployeeInterface> respondents = Arrays.asList(
+      new Employee("Ramiro", new CallTick(randomer), managers.get(0)),
+      new Employee("Tom", new CallTick(randomer), managers.get(1)),
+      new Employee("Lucas", new CallTick(randomer), managers.get(2)),
+      new Employee("Anita", new CallTick(randomer), managers.get(0)),
+      new Employee("Sabrina", new CallTick(randomer), managers.get(1)),
+      new Employee("Luke", new CallTick(randomer), managers.get(2)),
+      new Employee("Andrea", new CallTick(randomer), managers.get(0)),
+      new Employee("Josh", new CallTick(randomer), managers.get(1)),
+      new Employee("Samantha", new CallTick(randomer), managers.get(2)),
+      new Employee("Ivan", new CallTick(randomer), managers.get(0)),
+      new Employee("Cal", new CallTick(randomer), managers.get(1)),
+      new Employee("Hugo", new CallTick(randomer), managers.get(2)),
+      new Employee("Juan", new CallTick(randomer), managers.get(0)),
+      new Employee("William", new CallTick(randomer), managers.get(1)),
+      new Employee("Tina", new CallTick(randomer), managers.get(2)));
+    
+    for (int i = 0; i < 11; i++) {
+      respondents.get(i).pickCall();
+    }
+
+    callCenterShift(respondents);
+  }
+  
+  private static void callCenterShift(List<CallCenterEmployeeInterface> respondents) {
+    Dispatcher dispatcher = new Dispatcher(respondents);
+
+    try {
+      while(true) {
+        TimeUnit.SECONDS.sleep(1);
+        
+        dispatcher.dispatchCall();
+        dispatcher.tick();
+      }
+    } catch(InterruptedException exception) {
+      System.out.println(exception);
+    }
   }
 }
