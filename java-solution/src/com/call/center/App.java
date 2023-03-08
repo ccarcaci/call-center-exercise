@@ -47,11 +47,12 @@ public class App {
   
   private static void callCenterShift(List<CallCenterEmployeeInterface> respondents) {
     Dispatcher dispatcher = new Dispatcher(respondents);
+    int totalCalls = 200;
 
     try {
-      while(true) {
+      while(--totalCalls > 0) {
         TimeUnit.SECONDS.sleep(1);
-        
+        System.out.println("\nIncoming call");
         dispatcher.dispatchCall();
         dispatcher.tick();
       }

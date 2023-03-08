@@ -31,8 +31,8 @@ public class Employee implements CallCenterEmployeeInterface {
     }
 
     if(busy) {
-      supervisor.pickCall();
       System.out.println(name + " is busy, routed to manager");
+      supervisor.pickCall();
       return;
     }
 
@@ -55,5 +55,9 @@ public class Employee implements CallCenterEmployeeInterface {
 
     callTick.incrementBusyTime();
     busy = !callTick.maybeSetFree();
+
+    if(!busy) {
+      System.out.println(name + " hangs his call");
+    }
   }
 }
