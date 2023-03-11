@@ -26,7 +26,7 @@ We take as tick event an incoming call. An incoming call happens every two secon
 The initial status will consists of:
 - 1 director, no calls managed
 - 3 managers, no calls managed
-- 15 respondents, 5 each manager, 70% of them busy in a call
+- 15 respondents, 5 each manager, 11 of them busy in a call
 
 ### Evolving
 
