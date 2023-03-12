@@ -1,4 +1,4 @@
-call-center java solution
+Call center java solution
 ===
 
 # Prerequisites
@@ -11,7 +11,7 @@ call-center java solution
 
 Choose your flavor
 
-`make run` (if you don't like gradle)
+`make run` (if you don't like Gradle)
 
 `gradle run`
 
