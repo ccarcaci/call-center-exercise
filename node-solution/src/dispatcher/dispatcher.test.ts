@@ -19,7 +19,7 @@ test('there are no respondents', () => {
     }
   }
 
-  dispatcher(respondents, selectorMock, () => null, () => ({}) as any, loggerMock)
+  dispatcher(respondents, selectorMock, () => null, () => ({}) as unknown as RespondentType, loggerMock)
 
   expect(selectorCalls).toBe(1)
   expect(loggerInfoCalls).toBe(1)
