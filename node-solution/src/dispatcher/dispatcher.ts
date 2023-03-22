@@ -1,14 +1,24 @@
+import { LoggerType } from '../types/logger-type'
 import { RespondentType } from '../types/respondent-type'
-import { escalate } from './escalate/escalate'
-import { pick } from './pick-call/pick'
-import { selector } from './respondent-selector/selector'
 
-const dispatcher = (respondents: RespondentType[]): void => {
+type SelectorType = (respondents: RespondentType[]) => RespondentType | null
+type EscalateType = (respondent: RespondentType) => RespondentType | null
+type PickType = (respondent: RespondentType) => RespondentType
+
+const dispatcher = (
+  respondents: RespondentType[],
+  selector: SelectorType,
+  escalate: EscalateType,
+  pick: PickType,
+  logger: LoggerType): void => {
   var respondent = selector(respondents)
 
   if (respondent === null) {
+    logger.info('Call center has no respondents')
     return
   }
+
+  logger.info
 
   respondent = escalate(respondent)
 
@@ -19,4 +29,9 @@ const dispatcher = (respondents: RespondentType[]): void => {
   respondent = pick(respondent)
 }
 
-export { dispatcher }
+export {
+  dispatcher,
+  SelectorType,
+  EscalateType,
+  PickType,
+}
