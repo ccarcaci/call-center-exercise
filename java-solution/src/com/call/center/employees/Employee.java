@@ -31,7 +31,7 @@ public class Employee implements CallCenterEmployeeInterface {
     }
 
     if(busy) {
-      System.out.println(name + " is busy, routed to manager");
+      System.out.println(name + " is busy, routed to supervisor");
       supervisor.pickCall();
       return;
     }
