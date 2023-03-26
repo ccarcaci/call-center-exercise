@@ -24,9 +24,9 @@ const dispatcher = (
     return respondents
   }
 
-  const newRespondent = pick(escalatedRespondent)
+  const updatedRespondent = pick(escalatedRespondent)
   const index = respondents.indexOf(escalatedRespondent)
-  respondents[index] = newRespondent
+  respondents[index] = updatedRespondent
 
   return respondents
 }
