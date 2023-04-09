@@ -1,6 +1,6 @@
 import { test, expect } from '@jest/globals'
 
-import { maybeEscalate } from './maybeEscalate'
+import { maybeEscalate } from './maybe-escalate'
 import { RespondentType } from '../../types/respondent-type'
 import { LoggerType } from '../../types/logger-type'
 
