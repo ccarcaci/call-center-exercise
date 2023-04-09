@@ -8,11 +8,13 @@ test('Respondent is able to pick the call, no escalation', () => {
   const supervisor: RespondentType = {
     name: 'Sarah',
     busy: false,
+    busyTime: 0,
     calls: 0,
   }
   const respondent: RespondentType = {
     name: 'Tim',
     busy: false,
+    busyTime: 0,
     calls: 0,
     supervisor,
   }
@@ -31,11 +33,13 @@ test('Escalate call to supervisor', () => {
   const supervisor: RespondentType = {
     name: 'Sarah',
     busy: false,
+    busyTime: 0,
     calls: 0,
   }
   const respondent: RespondentType = {
     name: 'Tim',
     busy: true,
+    busyTime: 0,
     calls: 0,
     supervisor,
   }
@@ -59,11 +63,13 @@ test('Supervisor is busy', () => {
   const supervisor: RespondentType = {
     name: 'Sarah',
     busy: true,
+    busyTime: 0,
     calls: 0,
   }
   const respondent: RespondentType = {
     name: 'Tim',
     busy: true,
+    busyTime: 0,
     calls: 0,
     supervisor,
   }

@@ -32,6 +32,7 @@ test('no possibility to escalate', () => {
     name: 'Rodrigo',
     calls: 0,
     busy: false,
+    busyTime: 0,
   }]
   let selectorCalls = 0
   const selectorMock: SelectorType = (_: RespondentType[]): RespondentType | null => {
@@ -55,6 +56,7 @@ test('a respondent picks the call', () => {
     name: 'Rodrigo',
     calls: 0,
     busy: false,
+    busyTime: 0,
   }]
   let selectorCalls = 0
   const selectorMock: SelectorType = (_: RespondentType[]): RespondentType | null => {
@@ -73,6 +75,7 @@ test('a respondent picks the call', () => {
       name: 'Rodrigo',
       calls: 1,
       busy: true,
+      busyTime: 0,
     }
   }
 
@@ -85,5 +88,6 @@ test('a respondent picks the call', () => {
     name: 'Rodrigo',
     calls: 1,
     busy: true,
+    busyTime: 0,
   }]))
 })

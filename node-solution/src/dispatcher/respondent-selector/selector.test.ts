@@ -16,11 +16,13 @@ test('select lazyest respondent', () => {
       name: 'Anna',
       calls: 1,
       busy: false,
+      busyTime: 0,
     },
     {
       name: 'Tim',
       calls: 0,
       busy: false,
+      busyTime: 0,
     },
   ]
 
@@ -31,6 +33,7 @@ test('select lazyest respondent', () => {
       name: 'Tim',
       calls: 0,
       busy: false,
+      busyTime: 0,
     })
   )
 })

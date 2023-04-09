@@ -17,9 +17,9 @@ test('Time tick with only one respondent', () => {
     return respondent
   }
 
-  const result = tick(respondents, setFree)
+  const results = tick(respondents, setFree)
 
-  expect(respondents[0].busyTime).toBe(1)
+  expect(results[0].busyTime).toBe(1)
   expect(setFreeCalls).toBe(1)
   expect(JSON.stringify(setFreeParam)).toBe(JSON.stringify(respondents[0]))
 })
@@ -47,10 +47,10 @@ test('Time tick with two respondents', () => {
     return respondent
   }
 
-  const result = tick(respondents, setFree)
+  const results = tick(respondents, setFree)
 
-  expect(respondents[0].busyTime).toBe(1)
-  expect(respondents[1].busyTime).toBe(43)
+  expect(results[0].busyTime).toBe(1)
+  expect(results[1].busyTime).toBe(43)
   expect(setFreeCalls).toBe(1)
   expect(JSON.stringify(setFreeParams)).toBe(JSON.stringify(respondents))
 })

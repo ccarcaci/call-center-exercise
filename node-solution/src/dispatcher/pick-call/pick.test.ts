@@ -9,6 +9,7 @@ test('Respondent is able to pick the call', () => {
     name: 'Tom',
     calls: 0,
     busy: false,
+    busyTime: 0,
   }
   let loggerInfoCalls = 0
   let loggerMessage = ""
@@ -27,5 +28,6 @@ test('Respondent is able to pick the call', () => {
     name: 'Tom',
     calls: 1,
     busy: true,
+    busyTime: 0,
   }))
 })
