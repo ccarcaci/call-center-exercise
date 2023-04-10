@@ -7,7 +7,11 @@ const tick = (respondents: RespondentType[], setFree: SetFreeFunctionType): Resp
     if(!respondent.busy) { return respondent }
     
     respondent.busyTime++
-    respondent.busy = !setFree(respondent)
+
+    const isFree = setFree(respondent)
+    respondent.busy = !isFree
+    respondent.busyTime = isFree ? 0 : respondent.busyTime
+
     return respondent
   })
 }

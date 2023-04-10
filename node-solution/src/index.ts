@@ -7,9 +7,17 @@ import { setFree } from './tick/set-free/set-free'
 import { tick } from './tick/tick'
 import { RespondentType } from './types/respondent-type'
 
-let respondents: RespondentType[] = [{}]
+let respondents: RespondentType[] = [
+  {
+    name: 'Rob',
+    busy: false,
+    busyTime: 0,
+    calls: 0,
+  }
 
-let totalCalls = 100
+]
+
+let totalCalls = 200
 
 while(--totalCalls > 0) {
   // Wait 1s
