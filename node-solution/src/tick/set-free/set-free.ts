@@ -2,7 +2,7 @@ import { RespondentType } from '../../types/respondent-type'
 
 export type RandomerFunctionType = () => number
 
-const setFree = (respondent: RespondentType, randomer: RandomerFunctionType): boolean => {
+const setFree = (randomer: RandomerFunctionType) => (respondent: RespondentType): boolean => {
   if(respondent.busyTime <= 6) {
     return randomer() <= 10
   }

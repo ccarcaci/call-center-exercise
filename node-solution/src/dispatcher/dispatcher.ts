@@ -2,8 +2,8 @@ import { LoggerType } from '../types/logger-type'
 import { RespondentType } from '../types/respondent-type'
 
 type SelectorType = (respondents: RespondentType[]) => RespondentType | null
-type MaybeEscalateType = (respondent: RespondentType) => RespondentType | null
-type PickType = (respondent: RespondentType) => RespondentType
+type MaybeEscalateType = (respondent: RespondentType, logger: LoggerType) => RespondentType | null
+type PickType = (respondent: RespondentType, logger: LoggerType) => RespondentType
 
 const dispatcher = (
   respondents: RespondentType[],
@@ -18,13 +18,13 @@ const dispatcher = (
     return respondents
   }
 
-  const escalatedRespondent = maybeEscalate(respondent)
+  const escalatedRespondent = maybeEscalate(respondent, {} as unknown as LoggerType)
 
   if (escalatedRespondent === null) {
     return respondents
   }
 
-  const updatedRespondent = pick(escalatedRespondent)
+  const updatedRespondent = pick(escalatedRespondent, {} as unknown as LoggerType)
   const index = respondents.indexOf(escalatedRespondent)
   respondents[index] = updatedRespondent
 

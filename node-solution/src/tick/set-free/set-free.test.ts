@@ -16,8 +16,8 @@ test('Respondent is 21s busy, set free is true', () => {
     name: 'Tim',
   }
 
-  const result = setFree(respondent, randomer)
-
+  const result = setFree(randomer)(respondent)
+  
   expect(result).toBe(true)
   expect(randomerCalls).toBe(0)
 })
@@ -35,7 +35,7 @@ test('Respondent is 20s busy, 91% chance, set free is false', () => {
     name: 'Tim',
   }
 
-  const result = setFree(respondent, randomer)
+  const result = setFree(randomer)(respondent)
 
   expect(result).toBe(false)
   expect(randomerCalls).toBe(1)
@@ -54,7 +54,7 @@ test('Respondent is 20s busy, 90% chance, set free is true', () => {
     name: 'Tim',
   }
 
-  const result = setFree(respondent, randomer)
+  const result = setFree(randomer)(respondent)
 
   expect(result).toBe(true)
   expect(randomerCalls).toBe(1)
@@ -73,7 +73,7 @@ test('Respondent is 10s busy, 51% chance, set free is false', () => {
     name: 'Tim',
   }
 
-  const result = setFree(respondent, randomer)
+  const result = setFree(randomer)(respondent)
 
   expect(result).toBe(false)
   expect(randomerCalls).toBe(1)
@@ -92,7 +92,7 @@ test('Respondent is 10s busy, 50% chance, set free is true', () => {
     name: 'Tim',
   }
 
-  const result = setFree(respondent, randomer)
+  const result = setFree(randomer)(respondent)
 
   expect(result).toBe(true)
   expect(randomerCalls).toBe(1)
@@ -111,7 +111,7 @@ test('Respondent is 6s busy, 11% chance, set free is false', () => {
     name: 'Tim',
   }
 
-  const result = setFree(respondent, randomer)
+  const result = setFree(randomer)(respondent)
 
   expect(result).toBe(false)
   expect(randomerCalls).toBe(1)
@@ -130,7 +130,7 @@ test('Respondent is 6s busy, 10% chance, set free is true', () => {
     name: 'Tim',
   }
 
-  const result = setFree(respondent, randomer)
+  const result = setFree(randomer)(respondent)
 
   expect(result).toBe(true)
   expect(randomerCalls).toBe(1)
