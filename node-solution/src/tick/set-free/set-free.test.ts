@@ -135,3 +135,22 @@ test('Respondent is 6s busy, 10% chance, set free is true', () => {
   expect(result).toBe(true)
   expect(randomerCalls).toBe(1)
 })
+
+test('Respondent is 0s busy, set free is false', () => {
+  let randomerCalls = 0
+  const randomer = (): number => {
+    randomerCalls++
+    return 10
+  }
+  const respondent: RespondentType = {
+    busy: true,
+    busyTime: 0,
+    calls: 1,
+    name: 'Tim',
+  }
+
+  const result = setFree(randomer)(respondent)
+
+  expect(result).toBe(false)
+  expect(randomerCalls).toBe(0)
+})

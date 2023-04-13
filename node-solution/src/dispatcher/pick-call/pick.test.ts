@@ -20,11 +20,11 @@ test('Respondent is able to pick the call', () => {
     }
   }
 
-  const result = pick(respondent, loggerMock)
+  pick(respondent, loggerMock)
 
   expect(loggerInfoCalls).toBe(1)
-  expect(loggerMessage).toBe('Tom pick the call')
-  expect(JSON.stringify(result)).toBe(JSON.stringify({
+  expect(loggerMessage).toBe('Tom picks the call')
+  expect(JSON.stringify(respondent)).toBe(JSON.stringify({
     name: 'Tom',
     calls: 1,
     busy: true,

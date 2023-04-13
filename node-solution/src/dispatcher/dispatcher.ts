@@ -3,32 +3,28 @@ import { RespondentType } from '../types/respondent-type'
 
 type SelectorType = (respondents: RespondentType[]) => RespondentType | null
 type MaybeEscalateType = (respondent: RespondentType, logger: LoggerType) => RespondentType | null
-type PickType = (respondent: RespondentType, logger: LoggerType) => RespondentType
+type PickType = (respondent: RespondentType, logger: LoggerType) => void
 
 const dispatcher = (
   respondents: RespondentType[],
   selector: SelectorType,
   maybeEscalate: MaybeEscalateType,
   pick: PickType,
-  logger: LoggerType): RespondentType[] => {
+  logger: LoggerType): void => {
   var respondent = selector(respondents)
 
   if (respondent === null) {
     logger.info('Call center has no respondents')
-    return respondents
+    return
   }
 
-  const escalatedRespondent = maybeEscalate(respondent, {} as unknown as LoggerType)
+  const escalatedRespondent = maybeEscalate(respondent, logger)
 
   if (escalatedRespondent === null) {
-    return respondents
+    return
   }
 
-  const updatedRespondent = pick(escalatedRespondent, {} as unknown as LoggerType)
-  const index = respondents.indexOf(escalatedRespondent)
-  respondents[index] = updatedRespondent
-
-  return respondents
+  pick(escalatedRespondent, logger) // non-pure
 }
 
 export {

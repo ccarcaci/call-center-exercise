@@ -69,25 +69,13 @@ test('a respondent picks the call', () => {
     return respondents[0]
   }
   let pickCalls = 0
-  const pickMock: PickType = (_: RespondentType): RespondentType => {
+  const pickMock: PickType = (_: RespondentType): void => {
     pickCalls++
-    return {
-      name: 'Rodrigo',
-      calls: 1,
-      busy: true,
-      busyTime: 0,
-    }
   }
 
-  const result = dispatcher(respondents, selectorMock, escalateMock, pickMock, {} as unknown as LoggerType)
+  dispatcher(respondents, selectorMock, escalateMock, pickMock, {} as unknown as LoggerType)
 
   expect(selectorCalls).toBe(1)
   expect(escalateCalls).toBe(1)
   expect(pickCalls).toBe(1)
-  expect(JSON.stringify(result)).toBe(JSON.stringify([{
-    name: 'Rodrigo',
-    calls: 1,
-    busy: true,
-    busyTime: 0,
-  }]))
 })

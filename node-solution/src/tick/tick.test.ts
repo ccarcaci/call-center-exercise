@@ -2,6 +2,7 @@ import { test, expect } from '@jest/globals'
 
 import { RespondentType } from '../types/respondent-type'
 import { tick } from './tick'
+import { LoggerType } from '../types/logger-type'
 
 test('Time tick with free respondent', () => {
   const respondents: RespondentType[] = [
@@ -14,7 +15,7 @@ test('Time tick with free respondent', () => {
   ]
   const setFree = () => true
 
-  const results = tick(respondents, setFree)
+  const results = tick(respondents, setFree, {} as unknown as LoggerType)
 
   expect(results[0].busyTime).toBe(0)
 })
@@ -36,7 +37,7 @@ test('Time tick with only one respondent', () => {
     return false
   }
 
-  const results = tick(respondents, setFree)
+  const results = tick(respondents, setFree, {} as unknown as LoggerType)
 
   expect(results[0].busyTime).toBe(1)
   expect(setFreeCalls).toBe(1)
@@ -66,7 +67,7 @@ test('Time tick with two respondents', () => {
     return false
   }
 
-  const results = tick(respondents, setFree)
+  const results = tick(respondents, setFree, {} as unknown as LoggerType)
 
   expect(results[0].busyTime).toBe(1)
   expect(results[1].busyTime).toBe(43)
@@ -85,7 +86,7 @@ test('Respondent is being set free', () => {
   ]
   const setFree = (_: RespondentType): boolean => true
 
-  const results = tick(respondents, setFree)
+  const results = tick(respondents, setFree, { info: () => {} })
 
   expect(JSON.stringify(results)).toBe(
     JSON.stringify([{
