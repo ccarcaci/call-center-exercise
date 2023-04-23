@@ -1,9 +1,9 @@
 package com.call.center;
 
-import com.call.center.employees.CallCenterEmployeeInterface;
-
 import java.util.Comparator;
 import java.util.List;
+
+import com.call.center.employees.CallCenterEmployeeInterface;
 
 public class Dispatcher {
   private List<CallCenterEmployeeInterface> respondents;

@@ -1,0 +1,19 @@
+{
+  "name": "ts-cyclomatic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo No tests provided"
+  },
+  "keywords": [],
+  "author": "ccarcaci",
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "ts-jest": "^29.0.5"
+  },
+  "volta": {
+    "node": "18.12.1"
+  }
+}
