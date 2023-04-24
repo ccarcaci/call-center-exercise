@@ -11,7 +11,7 @@ const dispatcher = (
   maybeEscalate: MaybeEscalateType,
   pick: PickType,
   logger: LoggerType): void => {
-  var respondent = selector(respondents)
+  const respondent = selector(respondents)
 
   if (respondent === null) {
     logger.info('Call center has no respondents')
