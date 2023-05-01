@@ -1,7 +1,7 @@
 Call center exercise
 ===
 
-This exercise provides a comparison between OOP and procedural programming and is part of this [article]().
+This exercise provides a comparison between OOP and procedural programming and is part of this [article](https://dev.to/ccarcaci/oop-and-procedural-programming-comparison-part-1-5555).
 
 In this repo, we solve the "Call Center" exercise from [Cracking the Coding Interview](https://www.crackingthecodinginterview.com/) book reported in Chapter 7 "Object-Oriented Design".
 
